@@ -27,7 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main',
 ]
 
 MIDDLEWARE = [
@@ -66,8 +65,12 @@ WSGI_APPLICATION = 'litrai.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'litrai_db',  # Имя базы данных
+        'USER': 'postgres',  # Пользователь базы данных
+        'PASSWORD': 'admin',  # Пароль
+        'HOST': 'localhost',  # Хост базы данных (оставьте localhost для локальной работы)
+        'PORT': '5432',  # Порт PostgreSQL
     }
 }
 
