@@ -5,8 +5,10 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%lq0b_+cz&ko(^1&7md1ov7-534=iqw)p3)hu12a7#5_5b*p9z'
+# # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = (
+# 'django-insecure-%lq0b_+cz&ko(^1&7md1ov7-534=iqw)p3)hu12a7#5_5b*p9z'
+# )
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -67,7 +69,8 @@ DATABASES = {
         'NAME': 'litrai_db',  # Имя базы данных
         'USER': 'postgres',  # Пользователь базы данных
         'PASSWORD': 'admin',  # Пароль
-        'HOST': 'localhost',  # Хост базы данных (оставьте localhost для локальной работы)
+        # Хост базы данных (оставьте localhost для локальной работы)
+        'HOST': 'localhost',
         'PORT': '5432',  # Порт PostgreSQL
     }
 }
@@ -86,16 +89,16 @@ LOGGING = {
         },
     },
     'loggers': {
-    'django.db.backends': {
-        'handlers': ['console', 'file'],
-        'level': 'INFO',
+        'django.db.backends': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+        },
+        'litrai.middleware': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
     },
-    'litrai.middleware': {
-        'handlers': ['console', 'file'],
-        'level': 'INFO',
-        'propagate': True,
-    },
-},
 }
 
 
@@ -104,16 +107,28 @@ LOGGING = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'UserAttributeSimilarityValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'MinimumLengthValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'CommonPasswordValidator'
+        ),
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': (
+            'django.contrib.auth.password_validation.'
+            'NumericPasswordValidator'
+        ),
     },
 ]
 
