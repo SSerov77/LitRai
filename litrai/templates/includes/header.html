@@ -1,0 +1,26 @@
+{% load static %}
+<header class="header">
+    <div class="header-content">
+        <a href="{% url 'home' %}"><img src="{% static 'imgs/header/logo.svg' %}" alt="logo" class="logo"></a>
+        <div class="nav-items">
+            <a href="{% url 'home' %}" class="nav">Главная</a>
+            <a href="{% url 'catalog' %}" class="nav">Каталог</a>
+            <a href="{% url 'home' %}" class="nav">О магазине</a>
+            <a href="{% url 'home' %}" class="nav">Интересное</a>
+        </div>
+        <div class="links">
+            <a href="{% url 'home' %}" class="link">
+                <img src="{% static 'imgs/header/user.svg' %}" alt="user" class="img-link">
+                <p class="link-title">Войти</p>
+            </a>
+            <a href="{% url 'home' %}" class="link">
+                <img src="{% static 'imgs/header/box.svg' %}" alt="box" class="img-link">
+                <p class="link-title">Заказы</p>
+            </a>
+            <a href="{% url 'home' %}" class="link">
+                <img src="{% static 'imgs/header/cart.svg' %}" alt="cart" class="img-link">
+                <p class="link-title">Корзина</p>
+            </a>
+        </div>
+    </div>
+</header>

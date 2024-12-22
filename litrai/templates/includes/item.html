@@ -1,0 +1,10 @@
+{% load static %}
+<div class="item">
+    <a href="{% url 'home' %}"><img src="{{ book.cover_image.url }}" alt="{{ book.title }}" class="cover"></a>
+    <div class="item-info">
+        <p class="item-price">{{ book.price }} ₽</p>
+        <p class="item-name">{{ book.title }}</p>
+        <p class="item-author">{{ book.author.name }}</p>
+    </div>
+    <button class="btn-buy">КУПИТЬ</button>
+</div>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+<div class="main-content">
+    <section class="first">
+        <div class="texts">
+            <h1 class="title">Добро пожаловать в <span class="litrai">ЛитРай!</span></h1>
+            <h2 class="subtitle">Ваш проводник в удивительный мир книг!</h2>
+        </div>
+        <img src="{% static 'imgs/main/main-img.svg' %}" alt="main-img" class="main-img">
+    </section>
+
+    {% for category, books in book_sections.items %}
+        <section class="catalog">
+            <h2 class="category-title">{{ category }}</h2>
+            <div class="items">
+                {% for book in books %}
+                    {% include 'includes/item.html' %}
+                {% endfor %}
+            </div>
+        </section>
+    {% endfor %}
+</div>
+{% endblock %}
