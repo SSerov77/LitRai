@@ -1,19 +1,25 @@
 import os
 
 from pathlib import Path
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+def get_bool(name, default):
+    env_value = os.getenv(name, default).lower()
+    return env_value in ("true", "1", "y", "yes", "t", "")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = (
-# 'django-insecure-%lq0b_+cz&ko(^1&7md1ov7-534=iqw)p3)hu12a7#5_5b*p9z'
-# )
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = get_bool("DJANGO_DEBUG", "False")
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
 
 
 # Application definition
@@ -66,12 +72,11 @@ WSGI_APPLICATION = 'litrai.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'litrai_db',  # Имя базы данных
-        'USER': 'postgres',  # Пользователь базы данных
-        'PASSWORD': 'admin',  # Пароль
-        # Хост базы данных (оставьте localhost для локальной работы)
-        'HOST': 'localhost',
-        'PORT': '5432',  # Порт PostgreSQL
+        'NAME': os.getenv('DB_NAME', 'litrai_db'),  # Имя базы данных
+        'USER': os.getenv('DB_USER', 'postgres'),  # Пользователь базы данных
+        'PASSWORD': os.getenv('DB_PASSWORD', 'admin'),  # Пароль
+        'HOST': os.getenv('DB_HOST', 'localhost'), # Хост
+        'PORT': os.getenv('DB_PORT', '5432'),  # Порт PostgreSQL
     }
 }
 
@@ -81,22 +86,15 @@ LOGGING = {
     'disable_existing_loggers': False,
     'handlers': {
         'console': {
+            'level': 'INFO',
             'class': 'logging.StreamHandler',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': 'db_connections.log',
         },
     },
     'loggers': {
-        'django.db.backends': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',
-        },
         'litrai.middleware': {
-            'handlers': ['console', 'file'],
+            'handlers': ['console'],
             'level': 'INFO',
-            'propagate': True,
+            'propagate': False,
         },
     },
 }
@@ -136,9 +134,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
