@@ -75,6 +75,22 @@ a:hover {
     font-weight: 600;
 }
 
+button.link {
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+    display: inline-flex;
+    align-items: center;
+}
+
+button.link:hover {
+    color: #D65108;
+    transition: .3s;
+}
+
 /* MAIN */
 .main {
     width: 100%;

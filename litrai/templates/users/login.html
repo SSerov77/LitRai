@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Авторизация{% endblock %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-title">Авторизация</div>
+    <form class="form" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {{ form.username.errors }}
+        {{ form.username }}
+
+        {{ form.password.errors }}
+        {{ form.password }}
+        <button type="submit" class="submit-button">Войти</button>
+        <a href="{% url 'signup' %}" class="link-signup">Нет аккаунта?</a>
+    </form>
+</div>
+{% endblock %}

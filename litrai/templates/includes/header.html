@@ -9,10 +9,20 @@
             <a href="{% url 'home' %}" class="nav">Интересное</a>
         </div>
         <div class="links">
-            <a href="{% url 'home' %}" class="link">
-                <img src="{% static 'imgs/header/user.svg' %}" alt="user" class="img-link">
-                <p class="link-title">Войти</p>
-            </a>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="link">
+                        <img src="{% static 'imgs/header/user.svg' %}" alt="user" class="img-link">
+                        <p class="link-title">{{ user.username }}</p>
+                    </button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="link">
+                    <img src="{% static 'imgs/header/user.svg' %}" alt="user" class="img-link">
+                    <p class="link-title">Войти</p>
+                </a>
+            {% endif %}
             <a href="{% url 'home' %}" class="link">
                 <img src="{% static 'imgs/header/box.svg' %}" alt="box" class="img-link">
                 <p class="link-title">Заказы</p>

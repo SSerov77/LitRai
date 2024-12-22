@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Регистрация{% endblock %}
+
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="form-container">
+    <div class="form-title">Зарегистрироваться</div>
+    <form class="form" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {{ form.first_name.errors }}
+        {{ form.first_name }}
+
+        {{ form.last_name.errors }}
+        {{ form.last_name }}
+
+        {{ form.username.errors }}
+        {{ form.username }}
+
+        {{ form.email.errors }}
+        {{ form.email }}
+
+        {{ form.password1.errors }}
+        {{ form.password1 }}
+
+        {{ form.password2.errors }}
+        {{ form.password2 }}
+        
+        <button type="submit" class="submit-button">Зарегистрироваться</button>
+        <a href="{% url 'login' %}" class="link-login">Уже есть аккаунт?</a>
+    </form>
+</div>
+{% endblock %}
