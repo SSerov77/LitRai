@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'home.apps.HomeConfig',
 ]
 
 MIDDLEWARE = [
@@ -72,6 +73,32 @@ DATABASES = {
         'HOST': 'localhost',  # Хост базы данных (оставьте localhost для локальной работы)
         'PORT': '5432',  # Порт PostgreSQL
     }
+}
+
+# Логгирование подключения к БД
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': 'db_connections.log',
+        },
+    },
+    'loggers': {
+    'django.db.backends': {
+        'handlers': ['console', 'file'],
+        'level': 'INFO',
+    },
+    'litrai.middleware': {
+        'handlers': ['console', 'file'],
+        'level': 'INFO',
+        'propagate': True,
+    },
+},
 }
 
 
