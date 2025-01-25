@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = get_bool("DJANGO_DEBUG", "False")
+DEBUG = get_bool("DJANGO_DEBUG", "True")
 
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1").split(",")
 
@@ -70,14 +70,21 @@ WSGI_APPLICATION = 'litrai.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv('DB_NAME', 'litrai_db'),  # Имя базы данных
+#         'USER': os.getenv('DB_USER', 'postgres'),  # Пользователь базы данных
+#         'PASSWORD': os.getenv('DB_PASSWORD', 'admin'),  # Пароль
+#         'HOST': os.getenv('DB_HOST', 'localhost'), # Хост
+#         'PORT': os.getenv('DB_PORT', '5432'),  # Порт PostgreSQL
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'litrai_db'),  # Имя базы данных
-        'USER': os.getenv('DB_USER', 'postgres'),  # Пользователь базы данных
-        'PASSWORD': os.getenv('DB_PASSWORD', 'admin'),  # Пароль
-        'HOST': os.getenv('DB_HOST', 'localhost'), # Хост
-        'PORT': os.getenv('DB_PORT', '5432'),  # Порт PostgreSQL
+        'ENGINE': 'django.db.backends.sqlite3',  # Используем SQLite
+        'NAME': BASE_DIR / 'db.sqlite3',         # Указываем путь к файлу базы данных
     }
 }
 
